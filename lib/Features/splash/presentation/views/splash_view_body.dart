@@ -1,10 +1,32 @@
+import 'package:bookly/Features/home/presentation/views/home_view.dart';
+import 'package:bookly/conistants.dart';
 import 'package:bookly/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
-class SplashViewBody extends StatelessWidget {
+class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
+
+  @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    navigateToHome();
+  }
+
+  void navigateToHome() {
+     super.initState();
+    Future.delayed(const Duration(seconds: 4), () {
+      Get.to(() => const HomeView(), transition: Transition.fade , duration: kTransitionDuration);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
