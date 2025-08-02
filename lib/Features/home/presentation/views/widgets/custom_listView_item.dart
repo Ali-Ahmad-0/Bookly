@@ -16,8 +16,6 @@ class CustomListViewItem extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              height: 225,
-              width: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
