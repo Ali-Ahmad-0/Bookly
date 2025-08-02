@@ -20,11 +20,7 @@ class HomeViewBody extends StatelessWidget {
           child: SizedBox(
             height: 50,
             width: double.infinity,
-            child: Text(
-              textAlign: TextAlign.justify,
-              'Best seller ',
-              style: Styles.textMedium,
-            ),
+            child: Text('Best seller ', style: Styles.textMedium),
           ),
         ),
       ],
