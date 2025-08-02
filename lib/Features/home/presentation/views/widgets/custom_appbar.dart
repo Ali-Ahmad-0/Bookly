@@ -1,4 +1,3 @@
-
 import 'package:bookly/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,11 +9,12 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      padding: const EdgeInsets.only(left: 18, top: 16, right: 18, bottom: 8),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
           SvgPicture.asset(AssetsData.logo, height: 24),
-          Spacer(),
           IconButton(
             onPressed: () {},
             icon: const Icon(

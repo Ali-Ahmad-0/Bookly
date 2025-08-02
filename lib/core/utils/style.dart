@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class Styles {
   static const textstyle18 = TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.w600,
+    // fontWeight: FontWeight.w600,
   );
   static TextStyle textstyle20 = TextStyle(
     fontSize: 20,
