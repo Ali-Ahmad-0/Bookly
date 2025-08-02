@@ -7,6 +7,7 @@ class BestSellerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(), // disable scroll on this list
       itemCount: 8,
       itemBuilder: (context, index) {

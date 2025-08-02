@@ -8,7 +8,29 @@ class BookDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(children: [CustomBookDetailsAppBar()]),
+      child: Column(
+        children: [
+          CustomBookDetailsAppBar(),
+          SizedBox(height: 32),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.2,
+            ),
+            child: Container(
+              height: 262,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                    'assets/images/harry-potter-and-the-chamber-of-secrets-6.png',
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
