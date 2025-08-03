@@ -13,7 +13,7 @@ class HomeViewBody extends StatelessWidget {
       children: [
         CustomAppBar(),
 
-        const Expanded(
+        Expanded(
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
