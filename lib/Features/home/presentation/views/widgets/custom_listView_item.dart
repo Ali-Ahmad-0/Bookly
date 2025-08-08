@@ -1,11 +1,10 @@
-import 'dart:ui';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CustomListViewItem extends StatelessWidget {
-  const CustomListViewItem({super.key});
-
+  const CustomListViewItem({super.key, required this.imageUrl});
+  final String? imageUrl;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,17 +12,15 @@ class CustomListViewItem extends StatelessWidget {
       child: SizedBox(
         height: 225,
 
-        child: AspectRatio(
-          aspectRatio: 2.6 / 4,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(
-                  'assets/images/harry-potter-and-the-chamber-of-secrets-6.png',
-                ),
-              ),
+        child: ClipRRect(
+          borderRadius: BorderRadiusGeometry.circular(16),
+          child: AspectRatio(
+            aspectRatio: 2.6 / 4,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl ?? '',
+              fit: BoxFit.fill,
+              placeholder:(context , url ) => Skeletonizer(child: SizedBox(height: 225,)),
+              errorWidget: (context, url, error) => Icon(Icons.image_not_supported),
             ),
           ),
         ),

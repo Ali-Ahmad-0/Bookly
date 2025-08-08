@@ -17,7 +17,7 @@ class BookDetailsSection extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.15,
             ),
-            child: CustomListViewItem(),
+            child: CustomListViewItem(imageUrl: 'http://books.google.com/books/content?id=Od4yAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',),
           ),
           SizedBox(height: 43),
           Text('The Jungle Book', style: Styles.textstyle30),

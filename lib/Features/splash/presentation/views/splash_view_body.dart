@@ -1,5 +1,4 @@
-import 'package:bookly/Features/home/presentation/views/home_view.dart';
-import 'package:bookly/conistants.dart';
+
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/assets.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +16,14 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
-    // TODO: implement initState
     navigateToHome();
   }
 
   void navigateToHome() {
     super.initState();
     Future.delayed(const Duration(seconds: 4), () {
-      GoRouter.of(context).push(AppRouter.khomeview);
+      // ignore: use_build_context_synchronously
+      GoRouter.of(context).pushReplacement(AppRouter.khomeview);
     });
   }
 

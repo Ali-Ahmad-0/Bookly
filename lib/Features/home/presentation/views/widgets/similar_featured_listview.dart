@@ -14,7 +14,7 @@ class SimilareatureListView extends StatelessWidget {
           itemCount: 6,
 
           itemBuilder: (context, index) {
-            return CustomListViewItem();
+            return CustomListViewItem(imageUrl: 'http://books.google.com/books/content?id=Od4yAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',);
           },
           scrollDirection: Axis.horizontal,
         ),
