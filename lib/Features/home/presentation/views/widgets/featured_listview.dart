@@ -17,29 +17,34 @@ class FeaturedLIstView extends StatelessWidget {
           child: BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
             builder: (context, state) {
               if (state is FeaturedBooksLoading) {
-                 return 
-                Skeletonizer(
+                return Skeletonizer(
                   child: ListView.builder(
-                    itemCount: 6,
+                    itemCount: 10,
                     scrollDirection: Axis.horizontal,
 
                     itemBuilder: (context, index) {
-                      return CustomListViewItem(imageUrl: 'http://books.google.com/books/content?id=O6ts42ywcEoC&printsec=frontcover&img=1&zoom=1&source=gbs_api',);
+                      return CustomListViewItem(
+                        imageUrl:
+                            'http://books.google.com/books/content?id=O6ts42ywcEoC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+                      );
                     },
                   ),
                 );
               } else if (state is FeaturedBooksFailure) {
                 return Text(state.errMessage);
-              } else if(state is FeaturedBooksSuccess) {
-               return ListView.builder(
+              } else if (state is FeaturedBooksSuccess) {
+                return ListView.builder(
                   itemCount: state.books.length,
                   scrollDirection: Axis.horizontal,
 
                   itemBuilder: (context, index) {
-                    return CustomListViewItem(imageUrl: state.books[index].volumeInfo?.imageLinks?.thumbnail,);
+                    return CustomListViewItem(
+                      imageUrl:
+                          state.books[index].volumeInfo?.imageLinks?.thumbnail,
+                    );
                   },
                 );
-              }else{
+              } else {
                 return Text('error');
               }
             },

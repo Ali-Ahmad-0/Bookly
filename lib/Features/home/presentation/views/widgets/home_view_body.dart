@@ -23,13 +23,15 @@ class HomeViewBody extends StatelessWidget {
                     FeaturedLIstView(),
                     Padding(
                       padding: EdgeInsets.only(left: 24, top: 55),
-                      child: Text('Best seller', style: Styles.textstyle18),
+                      child: Text('Newest books', style: Styles.textstyle18),
                     ),
                     //   BestSellerListView(),
                   ],
                 ),
               ),
-              SliverToBoxAdapter(child: BestSellerListView(isScrollable: false,)),
+              SliverToBoxAdapter(
+                child: BestSellerListView(isScrollable: false),
+              ),
             ],
           ),
         ),

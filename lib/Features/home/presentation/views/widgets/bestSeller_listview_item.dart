@@ -1,12 +1,17 @@
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
+import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class BestsellerListViewItem extends StatelessWidget {
-  const BestsellerListViewItem({super.key});
+  const BestsellerListViewItem({super.key, this.book});
+
+  final BookModel? book;
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +23,12 @@ class BestsellerListViewItem extends StatelessWidget {
         height: 140,
         child: Row(
           children: [
-            Container(
-              height: 135,
-              width: 90,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(
-                    'assets/images/harry-potter-and-the-chamber-of-secrets-6.png',
-                  ),
-                ),
+            ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(16),
+              child: CustomListViewItem(
+                imageUrl:
+                    book?.volumeInfo?.imageLinks?.thumbnail ??
+                    'http://books.google.com/books/content?id=O6ts42ywcEoC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
               ),
             ),
             const SizedBox(width: 30),
@@ -40,7 +40,7 @@ class BestsellerListViewItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
                       textAlign: TextAlign.left,
-                      'Harry Potter and the Goblet of Fire',
+                      book?.volumeInfo?.title ?? 'Unkown title',
                       style: Styles.textstyle20,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -49,7 +49,7 @@ class BestsellerListViewItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Text(
-                      'J.K Rowling',
+                      book?.volumeInfo?.authors?[0] ?? 'Unkown title',
                       style: Styles.textstyle14.copyWith(color: Colors.grey),
                     ),
                   ),
@@ -57,7 +57,8 @@ class BestsellerListViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '19.99 € ',
+                        'Free',
+
                         style: Styles.textstyle20.copyWith(
                           fontWeight: FontWeight.bold,
                           fontFamily: GoogleFonts.montserrat().fontFamily,
