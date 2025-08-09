@@ -8,8 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class BestsellerListViewItem extends StatelessWidget {
-  const BestsellerListViewItem({super.key, this.book});
+class NewestListViewItem extends StatelessWidget {
+  const NewestListViewItem({super.key, this.book});
 
   final BookModel? book;
 

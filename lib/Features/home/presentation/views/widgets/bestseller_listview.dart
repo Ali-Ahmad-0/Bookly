@@ -27,7 +27,7 @@ class BestSellerListView extends StatelessWidget {
                     vertical: 8,
                     horizontal: 24,
                   ),
-                  child: BestsellerListViewItem(),
+                  child: NewestListViewItem(),
                 );
               },
             ),
@@ -45,7 +45,7 @@ class BestSellerListView extends StatelessWidget {
                   vertical: 8,
                   horizontal: 24,
                 ),
-                child: BestsellerListViewItem(book: state.books[index]),
+                child: NewestListViewItem(book: state.books[index]),
               );
             },
           );

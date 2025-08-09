@@ -31,7 +31,7 @@ class FeaturedLIstView extends StatelessWidget {
                   ),
                 );
               } else if (state is FeaturedBooksFailure) {
-                return Text(state.errMessage);
+                return Center(child: Text(state.errMessage));
               } else if (state is FeaturedBooksSuccess) {
                 return ListView.builder(
                   itemCount: state.books.length,
