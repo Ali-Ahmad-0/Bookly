@@ -1,4 +1,3 @@
-
 import 'package:bookly/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -12,19 +11,19 @@ class ActionButton extends StatelessWidget {
         CustomButton(
           backgroundColor: Colors.white,
           radius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            bottomLeft: Radius.circular(20),
+            topLeft: Radius.circular(16),
+            bottomLeft: Radius.circular(16),
           ),
-          texts: '19.99 €',
+          texts: 'Free',
           txtcolor: Colors.black,
         ),
         CustomButton(
           backgroundColor: Color(0xffEF8262),
           radius: BorderRadius.only(
-            topRight: Radius.circular(20),
-            bottomRight: Radius.circular(20),
+            topRight: Radius.circular(16),
+            bottomRight: Radius.circular(16),
           ),
-          texts: 'Free preview',
+          texts: 'Preview',
           txtcolor: Colors.white,
         ),
       ],

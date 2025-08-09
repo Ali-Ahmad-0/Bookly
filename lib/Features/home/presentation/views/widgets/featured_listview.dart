@@ -1,7 +1,9 @@
 import 'package:bookly/Features/home/presentation/manager/features_books_cubit/featured_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
+import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class FeaturedLIstView extends StatelessWidget {
@@ -38,9 +40,20 @@ class FeaturedLIstView extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
 
                   itemBuilder: (context, index) {
-                    return CustomListViewItem(
-                      imageUrl:
-                          state.books[index].volumeInfo?.imageLinks?.thumbnail,
+                    return GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).push(
+                          AppRouter.kBookDetails,
+                          extra: state.books[index],
+                        );
+                      },
+                      child: CustomListViewItem(
+                        imageUrl: state
+                            .books[index]
+                            .volumeInfo
+                            ?.imageLinks
+                            ?.thumbnail,
+                      ),
                     );
                   },
                 );

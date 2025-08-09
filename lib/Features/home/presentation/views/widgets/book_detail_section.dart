@@ -1,4 +1,4 @@
-
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/action_button.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
 import 'package:bookly/core/utils/style.dart';
@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
-
+  const BookDetailsSection({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -15,21 +15,26 @@ class BookDetailsSection extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.15,
+              horizontal: MediaQuery.of(context).size.width * 0.2,
             ),
-            child: CustomListViewItem(imageUrl: 'http://books.google.com/books/content?id=Od4yAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',),
+            child: CustomListViewItem(
+              imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+            ),
           ),
-          SizedBox(height: 43),
-          Text('The Jungle Book', style: Styles.textstyle30),
+          SizedBox(height: 32),
+          Text(
+            textAlign: TextAlign.center,
+            bookModel.volumeInfo!.title!,
+            style: Styles.textstyle30,
+          ),
           SizedBox(height: 6),
           Opacity(
             opacity: 0.7,
             child: Text(
-              'Rudyard Kipling',
+              bookModel.volumeInfo!.authors!.join(', '),
               style: Styles.textstyle18.copyWith(fontStyle: FontStyle.italic),
             ),
           ),
-          SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -49,9 +54,9 @@ class BookDetailsSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 12),
           ActionButton(),
-          Expanded(child: SizedBox(height: 50)),
+          Expanded(child: SizedBox(height: 24)),
         ],
       ),
     );

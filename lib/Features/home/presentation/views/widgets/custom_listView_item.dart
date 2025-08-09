@@ -14,7 +14,9 @@ class CustomListViewItem extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 2.6 / 4,
           child: CachedNetworkImage(
-            imageUrl: imageUrl ?? '',
+            imageUrl:
+                imageUrl ??
+                'http://books.google.com/books/content?id=Od4yAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
             fit: BoxFit.fill,
             placeholder: (context, url) =>
                 Skeletonizer(child: SizedBox(height: 225)),

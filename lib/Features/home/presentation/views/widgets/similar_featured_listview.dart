@@ -1,25 +1,58 @@
-
+import 'package:bookly/Features/home/presentation/manager/similar_books/similarbooks_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
+import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-class SimilareatureListView extends StatelessWidget {
-  const SimilareatureListView({super.key});
+class SimilarFeatureListView extends StatelessWidget {
+  const SimilarFeatureListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 165,
       child: Expanded(
-        child: ListView.builder(
-          itemCount: 6,
+        child: BlocBuilder<SimilarbooksCubit, SimilarbooksState>(
+          builder: (context, state) {
+            if (state is SimilarbooksLoading) {
+              return Skeletonizer(
+                child: ListView.builder(
+                  itemCount: 6,
 
-          itemBuilder: (context, index) {
-            return CustomListViewItem(imageUrl: 'http://books.google.com/books/content?id=Od4yAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',);
+                  itemBuilder: (context, index) {
+                    return CustomListViewItem(imageUrl: 'https://tse1.mm.bing.net/th/id/OIP.s6qkxOqsGKB_7JnvbKujWAHaE2?rs=1&pid=ImgDetMain&o=7&rm=3');
+                  },
+                  scrollDirection: Axis.horizontal,
+                ),
+              );
+            } else if (state is SimilarbooksSuccess) {
+              return ListView.builder(
+                itemCount: state.similarBooks.length,
+
+                itemBuilder: (context, index) {
+                  return CustomListViewItem(
+                    imageUrl:
+                        state
+                            .similarBooks[index]
+                            .volumeInfo
+                            ?.imageLinks
+                            ?.smallThumbnail ??
+                        '',
+                  );
+                },
+                scrollDirection: Axis.horizontal,
+              );
+            } else if (state is SimilarbooksFailure) {
+              return Center(
+                child: Text(state.errMessage, style: Styles.textstyle18),
+              );
+            } else {
+              return Text('There is something went wrong');
+            }
           },
-          scrollDirection: Axis.horizontal,
         ),
       ),
     );
-    ;
   }
 }

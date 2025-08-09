@@ -11,15 +11,8 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   setupServiceLocator();
 
-  runApp(const Bookly());
-}
-
-class Bookly extends StatelessWidget {
-  const Bookly({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
+  runApp(
+    MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) =>
@@ -28,18 +21,28 @@ class Bookly extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              NewestBooksCubit(getIt.get<HomeRepoImplementation>())..getNewestBooks(),
+              NewestBooksCubit(getIt.get<HomeRepoImplementation>())
+                ..getNewestBooks(),
         ),
       ],
 
-      child: MaterialApp.router(
-        routerConfig: AppRouter.router,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: kprimaryColor,
-          textTheme: GoogleFonts.montserratTextTheme(
-            ThemeData.dark().textTheme,
-          ),
+      child: Bookly(),
+    ),
+  );
+}
+
+class Bookly extends StatelessWidget {
+  const Bookly({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: kprimaryColor,
+        textTheme: GoogleFonts.montserratTextTheme(
+          ThemeData.dark().textTheme,
         ),
       ),
     );
