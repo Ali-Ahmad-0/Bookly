@@ -1,8 +1,10 @@
 import 'package:bookly/Features/home/presentation/manager/similar_books/similarbooks_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
+import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class SimilarFeatureListView extends StatelessWidget {
@@ -21,7 +23,10 @@ class SimilarFeatureListView extends StatelessWidget {
                   itemCount: 6,
 
                   itemBuilder: (context, index) {
-                    return CustomListViewItem(imageUrl: 'https://tse1.mm.bing.net/th/id/OIP.s6qkxOqsGKB_7JnvbKujWAHaE2?rs=1&pid=ImgDetMain&o=7&rm=3');
+                    return CustomListViewItem(
+                      imageUrl:
+                          'https://tse1.mm.bing.net/th/id/OIP.s6qkxOqsGKB_7JnvbKujWAHaE2?rs=1&pid=ImgDetMain&o=7&rm=3',
+                    );
                   },
                   scrollDirection: Axis.horizontal,
                 ),
@@ -31,14 +36,22 @@ class SimilarFeatureListView extends StatelessWidget {
                 itemCount: state.similarBooks.length,
 
                 itemBuilder: (context, index) {
-                  return CustomListViewItem(
-                    imageUrl:
-                        state
-                            .similarBooks[index]
-                            .volumeInfo
-                            ?.imageLinks
-                            ?.smallThumbnail ??
-                        '',
+                  return GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(
+                        AppRouter.kBookDetails,
+                        extra: state.similarBooks[index],
+                      );
+                    },
+                    child: CustomListViewItem(
+                      imageUrl:
+                          state
+                              .similarBooks[index]
+                              .volumeInfo
+                              ?.imageLinks
+                              ?.smallThumbnail ??
+                          '',
+                    ),
                   );
                 },
                 scrollDirection: Axis.horizontal,

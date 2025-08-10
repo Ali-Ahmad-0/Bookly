@@ -14,13 +14,14 @@ class BookDetailsViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: CustomScrollView(
         slivers: [
+          SliverToBoxAdapter(child: CustomBookDetailsAppBar()),
+
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(
               children: [
-                CustomBookDetailsAppBar(),
                 SizedBox(height: 12),
-                BookDetailsSection(bookModel: bookModel,),
+                BookDetailsSection(bookModel: bookModel),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
