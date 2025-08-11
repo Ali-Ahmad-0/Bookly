@@ -1,4 +1,4 @@
-import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
+import 'package:bookly/core/utils/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/action_button.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
 import 'package:bookly/core/utils/style.dart';
@@ -56,7 +56,7 @@ class BookDetailsSection extends StatelessWidget {
             ],
           ),
           SizedBox(height: 12),
-          ActionButton(),
+          ActionButton(bookModel: bookModel,),
           Expanded(child: SizedBox(height: 24)),
         ],
       ),

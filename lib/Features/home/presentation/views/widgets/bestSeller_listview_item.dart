@@ -1,4 +1,4 @@
-import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
+import 'package:bookly/core/utils/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/style.dart';
