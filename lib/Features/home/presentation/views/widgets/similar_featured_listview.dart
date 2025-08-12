@@ -1,4 +1,3 @@
-import 'package:bookly/Features/home/presentation/manager/features_books_cubit/featured_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/manager/similar_books/similarbooks_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_listView_item.dart';
 import 'package:bookly/core/utils/app_router.dart';
@@ -51,7 +50,7 @@ class SimilarFeatureListView extends StatelessWidget {
                               .volumeInfo
                               ?.imageLinks
                               ?.smallThumbnail ??
-                          '',
+                          'https://tse1.mm.bing.net/th/id/OIP.ctLBE7HDwQz10BiYBlcejgHaHR?rs=1&pid=ImgDetMain&o=7&rm=3',
                     ),
                   );
                 },
@@ -62,7 +61,9 @@ class SimilarFeatureListView extends StatelessWidget {
                 child: Text(state.errMessage, style: Styles.textstyle18),
               );
             } else {
-              return Text('There is something went wrong');
+              return Center(
+                child: Text('There is something went wrong , try again later'),
+              );
             }
           },
         ),

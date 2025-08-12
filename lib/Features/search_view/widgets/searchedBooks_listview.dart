@@ -14,6 +14,7 @@ class SearchedbooksListview extends StatelessWidget {
       builder: (context, state) {
         if (state is SearchedbooksLoading) {
           return Skeletonizer(
+            containersColor: Colors.white,
             child: ListView.builder(
               shrinkWrap: true,
               physics: AlwaysScrollableScrollPhysics(),
@@ -45,13 +46,18 @@ class SearchedbooksListview extends StatelessWidget {
             },
           );
         } else if (state is SearchedbooksFailure) {
-          return Center(child: Text(state.errMessage));
+          return Center(
+            child: Text(
+              'There is no books with this name',
+              style: Styles.textstyle18.copyWith(color: Colors.red.shade400),
+            ),
+          );
         } else {
           return SizedBox(
             child: Center(
               child: Text(
                 'There is no searched books yet',
-                style: Styles.textstyle20,
+                style: Styles.textstyle18,
               ),
             ),
           );

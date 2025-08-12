@@ -8,16 +8,29 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class NewestListViewItem extends StatelessWidget {
+class NewestListViewItem extends StatefulWidget {
   const NewestListViewItem({super.key, this.book});
 
   final BookModel? book;
 
   @override
+  State<NewestListViewItem> createState() => _NewestListViewItemState();
+}
+
+class _NewestListViewItemState extends State<NewestListViewItem> {
+  bool isFavorite = false;
+  @override
+  void initState() {
+    isFavorite;
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kBookDetails , extra: book);
+        GoRouter.of(context).push(AppRouter.kBookDetails, extra: widget.book);
       },
       child: SizedBox(
         height: 140,
@@ -27,8 +40,8 @@ class NewestListViewItem extends StatelessWidget {
               borderRadius: BorderRadiusGeometry.circular(16),
               child: CustomListViewItem(
                 imageUrl:
-                    book?.volumeInfo?.imageLinks?.thumbnail ??
-                    'http://books.google.com/books/content?id=O6ts42ywcEoC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+                    widget.book?.volumeInfo?.imageLinks?.thumbnail ??
+                    'https://tse1.mm.bing.net/th/id/OIP.ctLBE7HDwQz10BiYBlcejgHaHR?rs=1&pid=ImgDetMain&o=7&rm=3',
               ),
             ),
             const SizedBox(width: 30),
@@ -40,7 +53,7 @@ class NewestListViewItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
                       textAlign: TextAlign.left,
-                      book?.volumeInfo?.title ?? 'Unkown title',
+                      widget.book?.volumeInfo?.title ?? 'Unkown title',
                       style: Styles.textstyle20,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -49,7 +62,8 @@ class NewestListViewItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Text(
-                      book?.volumeInfo?.authors?[0] ?? 'Unkown title',
+                      widget.book?.volumeInfo?.authors?.join(' & ') ?? '',
+                      overflow: TextOverflow.ellipsis,
                       style: Styles.textstyle14.copyWith(color: Colors.grey),
                     ),
                   ),
@@ -65,16 +79,35 @@ class NewestListViewItem extends StatelessWidget {
                         ),
                       ),
                       Spacer(),
-                      Icon(
-                        FontAwesomeIcons.solidStar,
-                        color: Colors.yellow,
-                        size: 16,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.solidStar,
+                            color: Colors.yellow,
+                            size: 16,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(
+                              widget.book?.volumeInfo?.averageRating
+                                      .toString() ??
+                                  '',
+                              style: Styles.textstyle16,
+                            ),
+                          ),
+                          Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              '( ${widget.book?.volumeInfo?.ratingCount.toString()} )',
+                              style: Styles.textstyle14.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text('4.5', style: Styles.textstyle16),
-                      ),
-                      Text('( 234 )', style: Styles.textstyle14),
+                     
                     ],
                   ),
                 ],

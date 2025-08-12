@@ -18,7 +18,9 @@ class BookDetailsSection extends StatelessWidget {
               horizontal: MediaQuery.of(context).size.width * 0.2,
             ),
             child: CustomListViewItem(
-              imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+              imageUrl:
+                  bookModel.volumeInfo?.imageLinks?.thumbnail ??
+                  'https://tse1.mm.bing.net/th/id/OIP.ctLBE7HDwQz10BiYBlcejgHaHR?rs=1&pid=ImgDetMain&o=7&rm=3',
             ),
           ),
           SizedBox(height: 32),
@@ -42,12 +44,15 @@ class BookDetailsSection extends StatelessWidget {
               Icon(FontAwesomeIcons.solidStar, color: Colors.yellow, size: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text('4.5', style: Styles.textstyle16),
+                child: Text(
+                  bookModel.volumeInfo?.averageRating.toString() ?? '0',
+                  style: Styles.textstyle16,
+                ),
               ),
               Opacity(
                 opacity: 0.7,
                 child: Text(
-                  '( 234 )',
+                  bookModel.volumeInfo?.ratingCount.toString() ?? '0',
                   style: Styles.textstyle14.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -56,7 +61,7 @@ class BookDetailsSection extends StatelessWidget {
             ],
           ),
           SizedBox(height: 12),
-          ActionButton(bookModel: bookModel,),
+          ActionButton(bookModel: bookModel),
           Expanded(child: SizedBox(height: 24)),
         ],
       ),
