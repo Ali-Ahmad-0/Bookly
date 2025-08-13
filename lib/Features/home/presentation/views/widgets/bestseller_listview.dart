@@ -3,6 +3,8 @@ import 'package:bookly/Features/home/presentation/views/widgets/bestSeller_listv
 import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class BestSellerListView extends StatelessWidget {
@@ -50,7 +52,21 @@ class BestSellerListView extends StatelessWidget {
             },
           );
         } else if (state is NewestBooksFailure) {
-          return Center(child: Text(state.message));
+          if (state.message == 'No Internet Connection') {
+            return Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 200,
+                    child: Lottie.asset('assets/No Internet Connection.json' ),
+                  ),
+                  SizedBox(height: 50),
+                  Text(state.message, style: Styles.textstyle18),
+                ],
+              ),
+            );
+          } else
+            return Center(child: Text(state.message));
         } else {
           return SizedBox(
             child: Center(

@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class FeaturedLIstView extends StatelessWidget {
-  const FeaturedLIstView({super.key});
+class FeaturedListView extends StatelessWidget {
+  const FeaturedListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,6 @@ class FeaturedLIstView extends StatelessWidget {
                 return ListView.builder(
                   itemCount: state.books.length,
                   scrollDirection: Axis.horizontal,
-
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
